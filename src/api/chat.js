@@ -1,28 +1,28 @@
-import { getUser as User } from './user';
+import { getUser as User } from './user'
 // chat menu
 const Menu = [
-  { 
+  {
     text: 'Chat',
     icon: 'chat',
-    to: { path: '/chat/messaging' },
+    to: { path: '/chat/messaging' }
   },
-  { 
+  {
     text: 'Contacts',
     icon: 'contacts',
-    to: { path: '/chat/contact' },
+    to: { path: '/chat/contact' }
   },
-  { 
+  {
     text: 'File',
     icon: 'insert_drive_file',
-    to: { path: '/chat/media' },
+    to: { path: '/chat/media' }
   },
-  { 
+  {
     text: 'Settings',
     icon: 'settings',
-    to: { path: '/chat/settings' },
-  },
+    to: { path: '/chat/settings' }
+  }
 
-];
+]
 // chat group
 const Groups = [
   {
@@ -123,7 +123,7 @@ const Groups = [
     'created_by': 'a41c6c4a-9cb1-45d1-8c6f-091044ba51ff',
     'created_at': '2018-04-11T01:23:23.603Z'
   }
-];
+]
 
 const Messages = [
   {
@@ -462,33 +462,49 @@ const Messages = [
     'userId': '65a6eb21-67b5-45c3-9af7-faca2d9b60d4',
     'created_at': '2018-04-10T14:46:17.356Z'
   }
-];
+]
 
-// Add user to map 
+// Add user to map
 Messages.map((item) => {
-  let tmp  = User().find(x => x.uuid === item.userId);
+  let tmp = User().find(x => x.uuid === item.userId)
   item.user = {
     'uuid': tmp.uuid,
     'name': tmp.name,
     'avatar': tmp.avatar
-  };
-  return item;
-});
+  }
+  return item
+})
 
 // add messages to group
 Groups.map((item) => {
-  item.messages = Messages.filter(x => x.chatId === item.uuid);
-  item.user = User().find(x => x.uuid === item.created_by);
-  return item;
-});
+  item.messages = Messages.filter(x => x.chatId === item.uuid)
+  item.user = User().find(x => x.uuid === item.created_by)
+  return item
+})
+
+const getChannelList = () => {
+  const channelListQuery = window.sb.GroupChannel.createMyGroupChannelListQuery()
+  channelListQuery.includeEmpty = true
+  channelListQuery.limit = 20 // pagination limit could be set up to 100
+
+  if (channelListQuery.hasNext) {
+    channelListQuery.next(function (channelList, error) {
+      if (error) {
+        return
+      }
+      console.log(channelList)
+    })
+  }
+}
 
 // get chat group
 const getChatById = (uuid) => {
-  return (uuid !== undefined) ? Groups.find(x => x.uuid === uuid) : Groups[0];
-};
+  return (uuid !== undefined) ? Groups.find(x => x.uuid === uuid) : Groups[0]
+}
 
 export {
   Menu,
   Groups,
-  getChatById
-};
+  getChatById,
+  getChannelList
+}

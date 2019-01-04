@@ -43,10 +43,11 @@
 </template>
 
 <script>
-import API from '@/api';
-import ChatMenu from './ChatMenu';
-import VuePerfectScrollbar from 'vue-perfect-scrollbar';
-export default {
+  import API from '@/api'
+  import ChatMenu from './ChatMenu'
+  import VuePerfectScrollbar from 'vue-perfect-scrollbar'
+
+  export default {
   components: {
     VuePerfectScrollbar,
     ChatMenu

@@ -350,19 +350,14 @@
 </template>
 
 <script>
-import EChart from '@/components/chart/echart';
-import {
-  StackData,
-  SinData,
-  monthVisitData,
-  campaignData,
-  locationData,
-} from '@/api/chart';
-import Material from 'vuetify/es5/util/colors';
-import MiniChart from '@/components/widgets/chart/MiniChart';
-import BoxChart from '@/components/widgets/chart/BoxChart';
-import VWidget from '@/components/VWidget';
-export default {
+  import EChart from '@/components/chart/echart'
+  import { campaignData, locationData, monthVisitData, SinData, StackData, } from '@/api/chart'
+  import Material from 'vuetify/es5/util/colors'
+  import MiniChart from '@/components/widgets/chart/MiniChart'
+  import BoxChart from '@/components/widgets/chart/BoxChart'
+  import VWidget from '@/components/VWidget'
+
+  export default {
   components: {
     BoxChart,
     MiniChart,

@@ -3,7 +3,7 @@
     <div>
       <v-btn icon large flat slot="activator">
         <v-avatar>
-          <img src="/static/avatar/man_4.jpg" alt="Micahel Wang">
+          <img v-bind:src="me().profileUrl" alt="Micahel Wang">
         </v-avatar>
       </v-btn>
     </div>
@@ -19,12 +19,20 @@
 </template>
 
 <script>
-export default {
+  import { getMe } from '@/api/user'
+
+  export default {
+
   props: {
     items: {
       type: Array,
     }
   },
+    methods: {
+      me: function () {
+        return getMe()
+      }
+    }
 
 };
 </script>

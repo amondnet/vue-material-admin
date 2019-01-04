@@ -32,12 +32,13 @@
 </template>
 
 <script>
-import { Groups } from '@/api/chat';
-import { getUserById } from '@/api/user';
-import VCircle from '@/components/circle/VCircle';
-import Util from '@/util';
-import VuePerfectScrollbar from 'vue-perfect-scrollbar';
-export default {
+  import { Groups, getChannelList } from '@/api/chat'
+  import { getUserById } from '@/api/user'
+  import VCircle from '@/components/circle/VCircle'
+  import Util from '@/util'
+  import VuePerfectScrollbar from 'vue-perfect-scrollbar'
+
+  export default {
   components: {
     VuePerfectScrollbar,
     VCircle
@@ -58,8 +59,8 @@ export default {
       return new Date(s).toLocaleDateString();
     },
     computeTitle (item) {
-      let username = (item.users.length === 1) ? getUserById(item.users[0]).username : '';
-      return item.users.length === 1 ? username : item.title;
+      let username = getChannelList()
+      return username
     },
     randomAvatarColor (item) {
       return item.users.length === 1 

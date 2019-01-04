@@ -1,4 +1,4 @@
-const Items =  [
+const Items = [
   {
     'uuid': '65a6eb21-67b5-45c3-9af7-faca2d9b60d4',
     'name': 'Dessie',
@@ -418,18 +418,25 @@ const Items =  [
       }
     }
   }
-];
+]
 
 const getUserById = (uuid) => {
-  return (uuid === undefined) ? Items[0] : Items.find(x => x.uuid === uuid);
-};
+  return (uuid === undefined) ? Items[0] : Items.find(x => x.uuid === uuid)
+}
 
 const getUser = (limit) => {
-  return (limit) ? Items.slice(0, limit) : Items;
-};
+  return (limit) ? Items.slice(0, limit) : Items
+}
+const getMe = () => {
+  console.log('getme')
+  var user = window.sb.currentUser
+  console.log(user)
+  return user
+}
 
 export {
   Items,
   getUser,
-  getUserById
-};
+  getUserById,
+  getMe
+}
